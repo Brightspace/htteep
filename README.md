@@ -1,6 +1,6 @@
-# http-dup
+# htteep
 
-A tool for passively duplicating HTTP requests via packet sniffing to multiple backends and diff'ing responses.
+A tool for passively duplicating HTTP/1.1 requests via packet sniffing to multiple backends.
 
 Building
 --------
