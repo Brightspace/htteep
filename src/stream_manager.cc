@@ -23,7 +23,12 @@ Tins::TCPIP::StreamIdentifier make_identifier(const Tins::TCPIP::Stream& stream)
         Tins::TCPIP::StreamIdentifier::serialize(stream.server_addr_v6()), stream.server_port());
   } else {
     return Tins::TCPIP::StreamIdentifier(
-        Tins::TCPIP::StreamIdentifier::serialize(stream.client_addr_v4()), stream.client_port(), Tins::TCPIP::StreamIdentifier::serialize(stream.server_addr_v4()), stream.server_port()); } } std::ostream& operator<<(std::ostream& out, const Tins::TCPIP::StreamIdentifier& id) {
+        Tins::TCPIP::StreamIdentifier::serialize(stream.client_addr_v4()), stream.client_port(),
+        Tins::TCPIP::StreamIdentifier::serialize(stream.server_addr_v4()), stream.server_port());
+  }
+}
+
+std::ostream& operator<<(std::ostream& out, const Tins::TCPIP::StreamIdentifier& id) {
   out << "(TODO)";
   return out;
 }
