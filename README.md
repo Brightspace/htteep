@@ -8,5 +8,5 @@ Building
 Dependencies:
 
 ```shell
-sudo apt-get install libpcap-dev libssl-dev cmake
+sudo apt-get install libpcap-dev libssl-dev cmake libuv-dev
 ```
