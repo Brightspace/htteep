@@ -2,34 +2,19 @@
 #include "stream_manager.h"
 
 #include <iostream>
-#include <map>
 #include <string>
 #include <vector>
 
-#include <tins/sniffer.h>
-
 int main(int argc, char** argv) {
-  auto args = std::vector<std::string>(argv, argv + argc);
-
-  if (args.size() != 3) {
-    std::cout << "Usage: " << args[0] << " <port> <interface>\n";
+  if (argc != 3) {
+    std::cout << "Usage: " << argv[0] << " <port> <interface>\n";
     exit(-1);
   }
 
-  Tins::SnifferConfiguration config;
-  config.set_filter("tcp port " + args[1]);
+  std::string filter = "tcp port ";
+  filter += argv[1];
 
-  Tins::Sniffer sniffer(argv[2], config);
+  StreamManager sm(filter.c_str(), argv[2]);
 
-  Tins::TCPIP::StreamFollower follower;
-
-  StreamManager sm(follower);
-
-  std::cout << "Sniffing port " << args[1]
-            << " on interface " << args[2] << "\n";
-
-  sniffer.sniff_loop([&](Tins::Packet& packet) {
-    follower.process_packet(packet);
-    return true;
-  });
+  sm.Start();
 }

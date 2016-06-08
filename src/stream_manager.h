@@ -3,30 +3,30 @@
 
 #include "stream_processor.h"
 
-#include <map>
+#include <string>
 #include <memory>
 
 namespace Tins {
 namespace TCPIP {
 
-class StreamFollower;
 class Stream;
-class StreamIdentifier;
 
 }
 }
 
 class StreamManager {
 public:
-  StreamManager(Tins::TCPIP::StreamFollower& follower);
+  StreamManager(const char* pcapFilter, const char* interface);
+  ~StreamManager();
+
+  void Start();
 
 private:
   void HandleOpen(Tins::TCPIP::Stream& stream);
 
-  std::map<
-    Tins::TCPIP::StreamIdentifier,
-    std::unique_ptr<StreamProcessor>
-  > m_streams;
+  struct Impl;
+
+  std::unique_ptr<Impl> m_impl;
 };
 
 #endif
