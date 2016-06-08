@@ -1,6 +1,9 @@
 # htteep
 
-A tool for passively duplicating HTTP/1.1 requests via packet sniffing to multiple backends.
+It's like `tee(1)` but for HTTP.
+
+It uses packet sniffing to read TCP streams and replay against a different backend.
+
 
 Building
 --------
